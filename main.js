@@ -59,14 +59,14 @@ function addStudent() {
     const lastName = document.getElementById("lastName").value;
     const numberClass = document.getElementById("class").value;
     const averageGrade = document.getElementById("averageGrade").value;
-    const li = document.querySelector("li");
+
 
     const newStudent = new Student(name, lastName, numberClass, averageGrade);
     students.push(newStudent);
     console.log(students);
     displayStudent(newStudent);
 
-    console.log(id);
+
 
 
 
@@ -77,21 +77,32 @@ function displayStudent(student) {
     const li = document.createElement("li");
 
 
+
+    li.setAttribute("id", id);
+    id = id + 1;
+
     li.innerText += student.name + " " + student.lastName + " " + student.numberClass + " " + student.averageGrade;
-
-    // li.onclick = () => {
-    //     const li = document.querySelector("li");
-    //     li.remove();
-
-    // }
-    li.onclick = deleteStudent;
-
+    li.setAttribute("onclick", "remove(this)");
     ol.appendChild(li);
 
 
-    id = id + 1;
-    li.id = id;
+    // li.onclick = deleteStudent;
+
+
+
 }
+
+function remove(el) {
+
+    const element = el;
+    element.remove();
+}
+
+// li.onclick = (el) => {
+//     const element = el;
+
+//     element.remove();
+// }
 
 
 function clear() {
@@ -106,11 +117,8 @@ function clear() {
     averageGrade.value = " ";
 };
 
-function deleteStudent() {
-
-    const li = document.querySelector("li");
-
-    li.remove();
-}
+// function deleteStudent() {
+//     console.log(li.id);
+// }
 button.addEventListener("click", addStudent);
 button.addEventListener("click", clear);
