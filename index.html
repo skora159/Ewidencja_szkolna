@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Uczniowie</title>
+</head>
+
+<body>
+    <div id="all">
+        <div id="left">
+            <div class="radio">
+                <div id="students_label">
+
+                    <input type="button" id="students" name="list" value="students" checked>
+                    <label for="students">Students</label>
+
+                </div>
+
+                <div id="teachers_label">
+
+                    <input type="button" id="teachers" name="list" value="teachers">
+                    <label for="teachers">Terachers</label>
+
+                </div>
+            </div>
+
+            <div class="personal">
+
+                <p>Imię</p>
+                <input type="text" id="name" class="input">
+
+            </div>
+
+            <div class="personal">
+
+                <p>Nazwisko</p>
+                <input type="text" id="lastName" class="input">
+
+            </div>
+
+            <div class="personal">
+
+                <p id="speciality">Klasa</p>
+                <input type="text" id="class" class="input">
+
+            </div>
+
+            <div class="personal">
+
+                <p id="degree">Średnia ocen</p>
+                <input type="text" id="averageGrade" class="input">
+
+            </div>
+
+            <div class="button">
+
+                <button id="button">Add</button>
+
+            </div>
+        </div>
+
+
+        <div id="right">
+
+            <ol id="ol"> </ol>
+
+        </div>
+
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
