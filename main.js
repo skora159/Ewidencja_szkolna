@@ -1,22 +1,23 @@
 const button = document.getElementById("button");
 const studentsBtn = document.getElementById("students");
 const teachersBtn = document.getElementById("teachers");
-let id = 0;
+let id = 1;
 let i = 1;
 
 const students = [];
 const teachers = [];
+const removedStudents = []
 class Person {
-    constructor(name, lastName) {
-
+    constructor(id, name, lastName) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
     }
 }
 
 class Student extends Person {
-    constructor(name, lastName, numberClass, averageGrade) {
-        super(name, lastName);
+    constructor(id, name, lastName, numberClass, averageGrade) {
+        super(id, name, lastName);
         this.numberClass = numberClass;
         this.averageGrade = averageGrade;
     }
@@ -61,7 +62,7 @@ function addStudent() {
     const averageGrade = document.getElementById("averageGrade").value;
 
 
-    const newStudent = new Student(name, lastName, numberClass, averageGrade);
+    const newStudent = new Student(id, name, lastName, numberClass, averageGrade);
     students.push(newStudent);
     console.log(students);
     displayStudent(newStudent);
@@ -77,7 +78,6 @@ function displayStudent(student) {
     const li = document.createElement("li");
 
 
-
     li.setAttribute("id", id);
     id = id + 1;
 
@@ -86,17 +86,34 @@ function displayStudent(student) {
     ol.appendChild(li);
 
 
+
     // li.onclick = deleteStudent;
 
 
 
 }
 
-function remove(el) {
+function remove(studentLi) {
 
-    const element = el;
+
+    const element = studentLi;
     element.remove();
+
+
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id = element.id) {
+            students.splice(i, 1);
+        }
+
+
+        console.log(students[i]);
+
+    }
+
+
 }
+
+
 
 // li.onclick = (el) => {
 //     const element = el;
