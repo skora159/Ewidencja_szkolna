@@ -4,9 +4,9 @@ const teachersBtn = document.getElementById("teachers");
 let id = 1;
 let i = 1;
 
-const students = [];
-const teachers = [];
-const removedStudents = []
+let students = [];
+let teachers = [];
+let removedStudents = []
 class Person {
     constructor(id, name, lastName) {
         this.id = id;
@@ -67,10 +67,6 @@ function addStudent() {
     console.log(students);
     displayStudent(newStudent);
 
-
-
-
-
 };
 
 function displayStudent(student) {
@@ -85,42 +81,23 @@ function displayStudent(student) {
     li.setAttribute("onclick", "remove(this)");
     ol.appendChild(li);
 
-
-
-    // li.onclick = deleteStudent;
-
-
-
 }
 
 function remove(studentLi) {
 
 
-    const element = studentLi;
+    let element = studentLi;
     element.remove();
 
+    console.log(element.id);
 
-    for (let i = 0; i < students.length; i++) {
-        if (students[i].id = element.id) {
-            students.splice(i, 1);
-        }
-
-
-        console.log(students[i]);
-
-    }
-
+    let removeArrStud = students.filter(function (student) {
+        return student.id == element.id;
+    })
+    removedStudents.push(removeArrStud);
+    console.log(removedStudents);
 
 }
-
-
-
-// li.onclick = (el) => {
-//     const element = el;
-
-//     element.remove();
-// }
-
 
 function clear() {
     const name = document.getElementById("name");
@@ -134,8 +111,6 @@ function clear() {
     averageGrade.value = " ";
 };
 
-// function deleteStudent() {
-//     console.log(li.id);
-// }
+
 button.addEventListener("click", addStudent);
 button.addEventListener("click", clear);
