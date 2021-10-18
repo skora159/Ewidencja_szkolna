@@ -2,9 +2,9 @@ const button = document.getElementById("button");
 const studentsBtn = document.getElementById("students");
 const teachersBtn = document.getElementById("teachers");
 let id = 1;
-let i = 2;
 let students = [];
 let teachers = [];
+let selectedPerson = 'students';
 
 class Person {
     constructor(id, name, lastName) {
@@ -36,23 +36,22 @@ function addPerson() {
     const numberClassSpeciality = document.getElementById("class").value;
     const averageGradeDegree = document.getElementById("averageGrade").value;
 
-    if (i == 2) {
+    if (selectedPerson === 'students') {
         const newStudent = new Student(id, name, lastName, numberClassSpeciality, averageGradeDegree);
         students.push(newStudent);
         console.log(students);
         displayStudent(newStudent);
-    }
-
-    if (i == 1) {
+    } else if (selectedPerson === 'teachers') {
         const newTeacher = new Teacher(id, name, lastName, numberClassSpeciality, averageGradeDegree);
         teachers.push(newTeacher);
         console.log(teachers);
         displayTeacher(newTeacher);
     }
+
 };
 
 function displayStudent(student) {
-    const ol = document.getElementById("ol");
+    const ol = document.getElementById("olStudents");
     const li = document.createElement("li");
 
     li.setAttribute("id", id);
@@ -67,7 +66,7 @@ function displayStudent(student) {
 }
 
 function displayTeacher(teacher) {
-    const ol = document.getElementById("ol");
+    const ol = document.getElementById("olTeachers");
     const li = document.createElement("li");
 
     li.setAttribute("id", id);
@@ -77,7 +76,6 @@ function displayTeacher(teacher) {
     li.innerText += teacher.name + " " + teacher.lastName + " " + teacher.numberClassSpeciality + " " + teacher.averageGradeDegree;
 
     li.setAttribute("onclick", "remove(this)");
-
     ol.appendChild(li);
 }
 
@@ -113,34 +111,7 @@ function displayStudentsBtn() {
     numberClassSpeciality.innerText = "Klasa";
     averageGradeDegree.innerText = "Średnia ocen";
 
-    if (i == 1) {
-        // const right = document.getElementById("right");
-        // const ol = document.createElement("ol");
 
-        // right.appendChild(ol);
-        // ol.setAttribute("id", "ol");
-        // console.log(ol.id);
-
-
-
-        for (let i = 0; i < students.length; i++) {
-            // const ol = document.getElementById("ol");
-            // const li = document.createElement("li");
-
-            // li.innerText += students[i].name + " " + students[i].lastName + " " + students[i].numberClassSpeciality + " " + students[i].averageGradeDegree;
-            // li.setAttribute("id", id);
-
-            // id = id + 1;
-            // li.setAttribute("onclick", "remove(this)");
-
-            // ol.appendChild(li);
-
-            // console.log(students[i].name + " " + students[i].lastName + " " + students[i].numberClassSpeciality + " " + students[i].averageGradeDegree);
-
-        }
-        console.log(students);
-    }
-    i = 2;
 };
 
 function displayTeachersBtn() {
@@ -149,33 +120,27 @@ function displayTeachersBtn() {
     numberClassSpeciality.innerText = "Specjalność";
     averageGradeDegree.innerText = "Stopień naukowy";
 
-    if (i == 2) {
-        // const ol = document.getElementById("ol");
-        // ol.remove();
-        // const right = document.querySelector(".right");
-        // right.appendChild(document.createElement("ol"));
 
-        // ol.id = "ol";
-        // console.log(ol.id);
+
+};
+
+function onClickButton(buttonType) {
+    const olStudents = document.getElementById('olStudents');
+    const olTeachers = document.getElementById('olTeachers');
+    if (buttonType === 'students') {
+        selectedPerson = buttonType;
+
+        olTeachers.style.display = 'none';
+        olStudents.style.display = 'block';
+
+    } else if (buttonType === 'teachers') {
+        selectedPerson = buttonType;
+
+        olStudents.style.display = 'none';
+        olTeachers.style.display = 'block';
     }
-    for (let i = 0; i < teachers.length; i++) {
-        // const ol = document.getElementById("ol");
-        // const li = document.createElement("li");
 
-        // li.innerText += teachers[i].name + " " + teachers[i].lastName + " " + teachers[i].numberClass + " " + teachers[i].averageGrade;
-        // li.setAttribute("id", id);
 
-        // id = id + 1;
-        // li.setAttribute("onclick", "remove(this)");
-
-        // ol.appendChild(li);
-
-        // console.log(teachers[i].name + " " + teachers[i].lastName + " " + teachers[i].numberClass + " " + teachers[i].averageGrade);
-
-    }
-    console.log(teachers);
-
-    i = 1;
 };
 
 
