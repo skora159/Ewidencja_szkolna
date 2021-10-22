@@ -30,12 +30,12 @@ class Student extends Person {
         for (let i = 0; i < tabOcen.length; i++) {
 
             sum = sum + tabOcen[i];
-            console.log(sum);
+
         }
 
 
-        // this.sredniaOcen = sum / tabOcen.length;
-        return this.sredniaOcen;
+        this.sredniaOcen = sum / tabOcen.length;
+
     }
 }
 
@@ -78,12 +78,13 @@ function addPerson() {
 function arrGrad(ocenyString) {
     let oceny = ocenyString.replaceAll(' ', '');
     oceny = oceny.split(',');
-
+    const tablicaInt = [];
     oceny.forEach(element => {
-        Number(element);
+        tablicaInt.push(Number(element));
     });
+    console.log(tablicaInt);
 
-    return oceny;
+    return tablicaInt;
 
 };
 
