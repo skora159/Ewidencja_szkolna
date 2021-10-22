@@ -15,10 +15,27 @@ class Person {
 }
 
 class Student extends Person {
-    constructor(id, name, lastName, numberClassSpeciality, averageGradeDegree) {
+    sredniaOcen;
+    constructor(id, name, lastName, numberClassSpeciality, averageGradeDegree, arrGradDeg) {
         super(id, name, lastName);
         this.numberClassSpeciality = numberClassSpeciality;
         this.averageGradeDegree = averageGradeDegree;
+        this.arrGradDeg = arrGradDeg;
+
+    }
+
+    sredniaOcenn(tabOcen) {
+        let sum = 0;
+
+        for (let i = 0; i < tabOcen.length; i++) {
+
+            sum = sum + tabOcen[i];
+            console.log(sum);
+        }
+
+
+        // this.sredniaOcen = sum / tabOcen.length;
+        return this.sredniaOcen;
     }
 }
 
@@ -28,6 +45,7 @@ class Teacher extends Person {
         this.numberClassSpeciality = numberClassSpeciality;
         this.averageGradeDegree = averageGradeDegree;
     }
+
 }
 
 function addPerson() {
@@ -36,8 +54,15 @@ function addPerson() {
     const numberClassSpeciality = document.getElementById("class").value;
     const averageGradeDegree = document.getElementById("averageGrade").value;
 
+
     if (selectedPerson === 'students') {
-        const newStudent = new Student(id, name, lastName, numberClassSpeciality, averageGradeDegree);
+        let newStudent = new Student(id, name, lastName, numberClassSpeciality, averageGradeDegree);
+
+
+        const tabOcen = arrGrad(averageGradeDegree);
+        const sredniaOcen = newStudent.sredniaOcenn(tabOcen);
+
+
         students.push(newStudent);
         console.log(students);
         displayStudent(newStudent);
@@ -50,6 +75,18 @@ function addPerson() {
 
 };
 
+function arrGrad(ocenyString) {
+    let oceny = ocenyString.replaceAll(' ', '');
+    oceny = oceny.split(',');
+
+    oceny.forEach(element => {
+        Number(element);
+    });
+
+    return oceny;
+
+};
+
 function displayStudent(student) {
     const ol = document.getElementById("olStudents");
     const li = document.createElement("li");
@@ -58,7 +95,7 @@ function displayStudent(student) {
 
     id = id + 1;
 
-    li.innerText += student.name + " " + student.lastName + " " + student.numberClassSpeciality + " " + student.averageGradeDegree;
+    li.innerText += student.name + " " + student.lastName + " " + student.numberClassSpeciality + " " + student.sredniaOcen;
 
     li.setAttribute("onclick", "remove(this)");
 
